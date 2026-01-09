@@ -11,7 +11,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from locations import find_location, estimate_crowd_size, get_crowd_estimate, detect_event_type, is_protest_video
+from locations import find_location, estimate_crowd_size, get_crowd_estimate, detect_event_type, is_protest_video, is_foreign_location
 
 # Channel URLs - targeting shorts for location-specific content
 CHANNELS = {
@@ -67,6 +67,11 @@ def get_channel_videos(channel_url, channel_name, max_videos=10):
                 # Filter: only protest-related videos
                 if not is_protest_video(title):
                     print(f"  [SKIP] {title[:40]}... (not protest)")
+                    continue
+
+                # Filter: exclude diaspora protests (outside Iran)
+                if is_foreign_location(title):
+                    print(f"  [SKIP] {title[:40]}... (diaspora)")
                     continue
 
                 # Try to find location in title

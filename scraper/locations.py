@@ -346,6 +346,59 @@ def detect_event_type(text):
     return detected if detected else ["protest"]  # default to protest
 
 
+# Foreign locations to exclude (diaspora protests)
+FOREIGN_LOCATIONS = [
+    # Countries
+    "هلند",          # Netherlands
+    "آمریکا",        # America
+    "کانادا",        # Canada
+    "آلمان",         # Germany
+    "فرانسه",        # France
+    "انگلیس",        # England
+    "استرالیا",      # Australia
+    "سوئد",          # Sweden
+    "نروژ",          # Norway
+    "دانمارک",       # Denmark
+    "بلژیک",         # Belgium
+    "اتریش",         # Austria
+    "سوئیس",         # Switzerland
+    "ایتالیا",       # Italy
+    "اسپانیا",       # Spain
+    "ترکیه",         # Turkey
+    "عراق",          # Iraq
+    "امارات",        # UAE
+    # Cities
+    "لندن",          # London
+    "پاریس",         # Paris
+    "برلین",         # Berlin
+    "تورنتو",        # Toronto
+    "ونکوور",        # Vancouver
+    "لس آنجلس",      # Los Angeles
+    "واشنگتن",       # Washington
+    "نیویورک",       # New York
+    "آمستردام",      # Amsterdam
+    "استکهلم",       # Stockholm
+    "اسلو",          # Oslo
+    "سیدنی",         # Sydney
+    "ملبورن",        # Melbourne
+]
+
+
+def is_foreign_location(text):
+    """
+    Check if video is about protests outside Iran (diaspora).
+    Returns True if foreign location keyword is found.
+    """
+    if not text:
+        return False
+
+    for keyword in FOREIGN_LOCATIONS:
+        if keyword in text:
+            return True
+
+    return False
+
+
 # Keywords that indicate protest-related content
 PROTEST_KEYWORDS = [
     # Protest terms

@@ -1,6 +1,129 @@
 {
-  "last_updated": "2026-01-09T12:49:35Z",
+  "last_updated": "2026-01-09T14:19:16Z",
   "videos": [
+    {
+      "id": "-Ts0NF2Nvm4",
+      "title": "معترضان در سبزوار: پهلوی برمی‌گرده",
+      "title_english": "",
+      "location": null,
+      "crowd_size": "large",
+      "event_types": [
+        "protest"
+      ],
+      "thumbnail": "https://img.youtube.com/vi/-Ts0NF2Nvm4/mqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=-Ts0NF2Nvm4",
+      "uploaded": "",
+      "source": "Iran International"
+    },
+    {
+      "id": "iKc4gx6K__0",
+      "title": "فریاد «جاوید شاه» در انقلاب تهران",
+      "title_english": "",
+      "location": {
+        "name_fa": "انقلاب",
+        "name_en": "Enghelab Square",
+        "city": "Tehran",
+        "lat": 35.7012,
+        "lng": 51.389
+      },
+      "crowd_size": "medium",
+      "event_types": [
+        "chanting"
+      ],
+      "thumbnail": "https://img.youtube.com/vi/iKc4gx6K__0/mqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=iKc4gx6K__0",
+      "uploaded": "",
+      "source": "Iran International"
+    },
+    {
+      "id": "PyPsk4ko6qE",
+      "title": "از کار انداختن دوربین نظارتی به‌دست یک معترض در کرج",
+      "title_english": "",
+      "location": {
+        "name_fa": "کرج",
+        "name_en": "Karaj",
+        "city": "Karaj",
+        "lat": 35.84,
+        "lng": 50.9391
+      },
+      "crowd_size": "large",
+      "event_types": [
+        "protest"
+      ],
+      "thumbnail": "https://img.youtube.com/vi/PyPsk4ko6qE/mqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=PyPsk4ko6qE",
+      "uploaded": "",
+      "source": "Iran International"
+    },
+    {
+      "id": "wCZXEQRG_NA",
+      "title": "لحظاتی از تنش در اعتراضات نازی‌آباد تهران",
+      "title_english": "",
+      "location": {
+        "name_fa": "تهران",
+        "name_en": "Tehran",
+        "city": "Tehran",
+        "lat": 35.6892,
+        "lng": 51.389
+      },
+      "crowd_size": "large",
+      "event_types": [
+        "protest"
+      ],
+      "thumbnail": "https://img.youtube.com/vi/wCZXEQRG_NA/mqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=wCZXEQRG_NA",
+      "uploaded": "",
+      "source": "Iran International"
+    },
+    {
+      "id": "w-RG5xoRvAw",
+      "title": "شاهزاده رضا پهلوی: مردم باید خیابان‌ها را به تسخیر خود در آورند",
+      "title_english": "",
+      "location": null,
+      "crowd_size": "large",
+      "event_types": [
+        "protest"
+      ],
+      "thumbnail": "https://img.youtube.com/vi/w-RG5xoRvAw/mqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=w-RG5xoRvAw",
+      "uploaded": "",
+      "source": "Iran International"
+    },
+    {
+      "id": "0I78VYCXsB4",
+      "title": "معترضان در چالوس با شعار «پهلوی برمی‌گرده» به خیابان آمدند",
+      "title_english": "",
+      "location": {
+        "name_fa": "چالوس",
+        "name_en": "Chalus",
+        "city": "Chalus",
+        "lat": 36.6558,
+        "lng": 51.4208
+      },
+      "crowd_size": "large",
+      "event_types": [
+        "march",
+        "chanting"
+      ],
+      "thumbnail": "https://img.youtube.com/vi/0I78VYCXsB4/mqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=0I78VYCXsB4",
+      "uploaded": "",
+      "source": "Iran International"
+    },
+    {
+      "id": "ZKfuczvP2MM",
+      "title": "شنیده شدن صدای شلیک در اعتراضات قائم‌شهر",
+      "title_english": "",
+      "location": null,
+      "crowd_size": "large",
+      "event_types": [
+        "repression"
+      ],
+      "thumbnail": "https://img.youtube.com/vi/ZKfuczvP2MM/mqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=ZKfuczvP2MM",
+      "uploaded": "",
+      "source": "Iran International"
+    },
     {
       "id": "udxNIr5PQlw",
       "title": "معترضان در سعادت‌آباد با روشن کردن آتش به اعتراضات شبانه ادامه می‌دهند",
@@ -1381,26 +1504,6 @@
       "source": "Iran International"
     },
     {
-      "id": "rpnPHjwxKfk",
-      "title": "فریاد «جاوید شاه» ایرانیان در هلند",
-      "title_english": "",
-      "location": {
-        "name_fa": "ایران",
-        "name_en": "Iran",
-        "city": "Iran",
-        "lat": 32.4279,
-        "lng": 53.688
-      },
-      "crowd_size": "medium",
-      "event_types": [
-        "chanting"
-      ],
-      "thumbnail": "https://img.youtube.com/vi/rpnPHjwxKfk/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=rpnPHjwxKfk",
-      "uploaded": "",
-      "source": "Iran International"
-    },
-    {
       "id": "ySwM0Ndyk8w",
       "title": "اعتصاب کسبه در سبزوار",
       "title_english": "",
@@ -1542,150 +1645,6 @@
       ],
       "thumbnail": "https://img.youtube.com/vi/gGcVHuIy3gI/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=gGcVHuIy3gI",
-      "uploaded": "",
-      "source": "Iran International"
-    },
-    {
-      "id": "Rn2Y881tKA0",
-      "title": "مردم معترض و فریاد «جاوید شاه» در خشکبیجار",
-      "title_english": "",
-      "location": null,
-      "crowd_size": "medium",
-      "event_types": [
-        "chanting"
-      ],
-      "thumbnail": "https://img.youtube.com/vi/Rn2Y881tKA0/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=Rn2Y881tKA0",
-      "uploaded": "",
-      "source": "Iran International"
-    },
-    {
-      "id": "59fBr1pGKuc",
-      "title": "بی‌اعتنایی مردم معترض به التماس‌های دولت پزشکیان",
-      "title_english": "",
-      "location": null,
-      "crowd_size": "large",
-      "event_types": [
-        "protest"
-      ],
-      "thumbnail": "https://img.youtube.com/vi/59fBr1pGKuc/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=59fBr1pGKuc",
-      "uploaded": "",
-      "source": "Iran International"
-    },
-    {
-      "id": "OQLb7cLph4A",
-      "title": "پیام معترضان آبدانانِ ایلام، در فروشگاه افق کوروش",
-      "title_english": "",
-      "location": {
-        "name_fa": "ایلام",
-        "name_en": "Ilam",
-        "city": "Ilam",
-        "lat": 33.6374,
-        "lng": 46.4227
-      },
-      "crowd_size": "large",
-      "event_types": [
-        "protest"
-      ],
-      "thumbnail": "https://img.youtube.com/vi/OQLb7cLph4A/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=OQLb7cLph4A",
-      "uploaded": "",
-      "source": "Iran International"
-    },
-    {
-      "id": "hsWaB1-huAQ",
-      "title": "غلبه روحی معترضان بر نیروی سرکوب",
-      "title_english": "",
-      "location": null,
-      "crowd_size": "large",
-      "event_types": [
-        "repression"
-      ],
-      "thumbnail": "https://img.youtube.com/vi/hsWaB1-huAQ/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=hsWaB1-huAQ",
-      "uploaded": "",
-      "source": "Iran International"
-    },
-    {
-      "id": "eG7GLipHTfc",
-      "title": "«دیگه نمیشه اعتراضات مردم را جمع کرد»",
-      "title_english": "",
-      "location": null,
-      "crowd_size": "large",
-      "event_types": [
-        "protest"
-      ],
-      "thumbnail": "https://img.youtube.com/vi/eG7GLipHTfc/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=eG7GLipHTfc",
-      "uploaded": "",
-      "source": "Iran International"
-    },
-    {
-      "id": "wrWepMtTURk",
-      "title": "اعتصاب؛ بحران برای حکومت شانس پیروزی برای مردم",
-      "title_english": "",
-      "location": null,
-      "crowd_size": "large",
-      "event_types": [
-        "strike"
-      ],
-      "thumbnail": "https://img.youtube.com/vi/wrWepMtTURk/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=wrWepMtTURk",
-      "uploaded": "",
-      "source": "Iran International"
-    },
-    {
-      "id": "_xyeWCX1pMs",
-      "title": "فریاد مردم در آبادان: ایرانی داد بزن، حقتو فریاد بزن",
-      "title_english": "",
-      "location": {
-        "name_fa": "آبادان",
-        "name_en": "Abadan",
-        "city": "Abadan",
-        "lat": 30.3392,
-        "lng": 48.3043
-      },
-      "crowd_size": "medium",
-      "event_types": [
-        "chanting"
-      ],
-      "thumbnail": "https://img.youtube.com/vi/_xyeWCX1pMs/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=_xyeWCX1pMs",
-      "uploaded": "",
-      "source": "Iran International"
-    },
-    {
-      "id": "Tl-l-Xr7jhs",
-      "title": "تظاهرات مردم در فیروزکوه در حمایت از شاهزاده رضا پهلوی",
-      "title_english": "",
-      "location": null,
-      "crowd_size": "large",
-      "event_types": [
-        "march"
-      ],
-      "thumbnail": "https://img.youtube.com/vi/Tl-l-Xr7jhs/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=Tl-l-Xr7jhs",
-      "uploaded": "",
-      "source": "Iran International"
-    },
-    {
-      "id": "4sWdietP1ms",
-      "title": "شبه نظامیان عراقی، ابزار سرکوب در ایران",
-      "title_english": "",
-      "location": {
-        "name_fa": "ایران",
-        "name_en": "Iran",
-        "city": "Iran",
-        "lat": 32.4279,
-        "lng": 53.688
-      },
-      "crowd_size": "large",
-      "event_types": [
-        "repression"
-      ],
-      "thumbnail": "https://img.youtube.com/vi/4sWdietP1ms/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=4sWdietP1ms",
       "uploaded": "",
       "source": "Iran International"
     }
