@@ -519,6 +519,9 @@ async function init() {
     // Set up event listeners
     document.getElementById('sidebar-close').addEventListener('click', hideSidebar);
     document.getElementById('filter-violence').addEventListener('change', applyFilters);
+    document.getElementById('about-close').addEventListener('click', () => {
+        document.getElementById('about').classList.add('hidden');
+    });
 
     // Close sidebar when clicking on map
     map.on('click', hideSidebar);

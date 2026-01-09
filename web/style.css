@@ -527,6 +527,27 @@ body {
     font-size: 0.8rem;
 }
 
+.about-box.hidden {
+    display: none;
+}
+
+.about-close {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #999;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+}
+
+.about-close:hover {
+    color: #333;
+}
+
 .about-title {
     font-weight: 600;
     margin-bottom: 6px;
