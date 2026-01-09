@@ -33,10 +33,13 @@ function initMap() {
         spiderfyOnMaxZoom: true,
         disableClusteringAtZoom: ZOOM_THRESHOLD,
         iconCreateFunction: function(cluster) {
-            // Cluster with count
-            const count = cluster.getChildCount();
+            // Sum up total videos from all markers in cluster
+            let totalVideos = 0;
+            cluster.getAllChildMarkers().forEach(function(marker) {
+                totalVideos += marker.videoCount || 0;
+            });
             return L.divIcon({
-                html: '<div class="cluster-dot"><span>' + count + '</span></div>',
+                html: '<div class="cluster-dot"><span>' + totalVideos + '</span></div>',
                 className: 'marker-cluster-simple',
                 iconSize: L.point(32, 32)
             });
@@ -296,6 +299,7 @@ function addMarkers(videos) {
             marker = L.marker([location.lat, location.lng], {
                 icon: violenceIcon
             });
+            marker.videoCount = videos.length;
 
             // Popup for violence
             const popupContent = `
@@ -326,6 +330,7 @@ function addMarkers(videos) {
                 opacity: 1,
                 fillOpacity: 0.85
             });
+            marker.videoCount = videos.length;
 
             // Popup with details
             const popupContent = `
@@ -348,6 +353,7 @@ function addMarkers(videos) {
             marker = L.marker([location.lat, location.lng], {
                 icon: countIcon
             });
+            marker.videoCount = videos.length;
 
             // Simple popup
             marker.bindPopup(`<div class="popup-location">${location.name_en}</div><div class="popup-count"><strong>${videos.length}</strong> videos</div>`);
