@@ -338,12 +338,21 @@ body {
 }
 
 .violence-marker {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     background: #dc2626;
     border-radius: 50%;
     border: 3px solid white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.violence-marker span {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 /* Popup styling */

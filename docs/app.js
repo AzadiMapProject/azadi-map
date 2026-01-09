@@ -61,8 +61,13 @@ function initMap() {
  */
 async function loadVideos() {
     try {
-        // Load from data folder
-        let response = await fetch('./data/videos.json');
+        // Try to load from data folder (production)
+        let response = await fetch('../data/videos.json');
+
+        if (!response.ok) {
+            // Try alternate path
+            response = await fetch('./data/videos.json');
+        }
 
         if (!response.ok) {
             console.warn('No videos.json found, using sample data');
@@ -278,13 +283,13 @@ function addMarkers(videos) {
         let marker;
 
         if (violenceOnly) {
-            // VIOLENCE MODE: Red pin markers
+            // VIOLENCE MODE: Red markers with count
             const violenceIcon = L.divIcon({
-                html: '<div class="violence-marker"></div>',
+                html: '<div class="violence-marker"><span>' + videos.length + '</span></div>',
                 className: 'violence-icon',
-                iconSize: [24, 32],
-                iconAnchor: [12, 32],
-                popupAnchor: [0, -32]
+                iconSize: [28, 28],
+                iconAnchor: [14, 14],
+                popupAnchor: [0, -14]
             });
 
             marker = L.marker([location.lat, location.lng], {
