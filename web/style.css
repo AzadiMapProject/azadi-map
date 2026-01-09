@@ -338,24 +338,12 @@ body {
 }
 
 .violence-marker {
-    width: 24px;
-    height: 32px;
+    width: 20px;
+    height: 20px;
     background: #dc2626;
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    border: 2px solid white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-}
-
-.violence-marker::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    width: 8px;
-    height: 8px;
-    background: white;
     border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 /* Popup styling */
