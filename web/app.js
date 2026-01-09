@@ -273,8 +273,8 @@ function addMarkers(videos) {
     const isZoomedIn = map.getZoom() >= ZOOM_THRESHOLD;
     const violenceOnly = document.getElementById('filter-violence').checked;
 
-    // Auto-select view mode based on zoom: zoomed out = city, zoomed in = location
-    const viewMode = isZoomedIn ? 'location' : 'city';
+    // Violence mode: always by location. Normal mode: city when zoomed out, location when zoomed in
+    const viewMode = violenceOnly ? 'location' : (isZoomedIn ? 'location' : 'city');
     const groups = viewMode === 'city' ? groupByCity(videos) : groupByLocation(videos);
 
     Object.values(groups).forEach(group => {
