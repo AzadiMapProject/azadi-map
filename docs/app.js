@@ -26,26 +26,8 @@ function initMap() {
         maxZoom: 18
     }).addTo(map);
 
-    // Initialize marker cluster group
-    markers = L.markerClusterGroup({
-        showCoverageOnHover: false,
-        maxClusterRadius: 50,
-        spiderfyOnMaxZoom: true,
-        disableClusteringAtZoom: ZOOM_THRESHOLD,
-        iconCreateFunction: function(cluster) {
-            // Sum up total videos from all markers in cluster
-            let totalVideos = 0;
-            cluster.getAllChildMarkers().forEach(function(marker) {
-                totalVideos += marker.videoCount || 0;
-            });
-            return L.divIcon({
-                html: '<div class="cluster-dot"><span>' + totalVideos + '</span></div>',
-                className: 'marker-cluster-simple',
-                iconSize: L.point(32, 32)
-            });
-        }
-    });
-
+    // Simple layer group (no clustering - we group manually by city/location)
+    markers = L.layerGroup();
     map.addLayer(markers);
 
     // Listen for zoom changes to update marker styles
