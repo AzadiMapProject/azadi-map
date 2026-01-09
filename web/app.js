@@ -33,11 +33,12 @@ function initMap() {
         spiderfyOnMaxZoom: true,
         disableClusteringAtZoom: ZOOM_THRESHOLD,
         iconCreateFunction: function(cluster) {
-            // Simple dot indicator for clusters
+            // Cluster with count
+            const count = cluster.getChildCount();
             return L.divIcon({
-                html: '<div class="cluster-dot"></div>',
+                html: '<div class="cluster-dot"><span>' + count + '</span></div>',
                 className: 'marker-cluster-simple',
-                iconSize: L.point(16, 16)
+                iconSize: L.point(32, 32)
             });
         }
     });

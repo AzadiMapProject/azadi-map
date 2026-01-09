@@ -323,13 +323,21 @@ body {
 }
 
 .cluster-dot {
-    width: 14px;
-    height: 14px;
+    width: 32px;
+    height: 32px;
     background: #dc2626;
     border-radius: 50%;
-    border: 2px solid white;
+    border: 3px solid white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cluster-dot span {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 /* Violence pin markers */
