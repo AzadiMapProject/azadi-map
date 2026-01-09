@@ -513,6 +513,31 @@ body {
     text-decoration: underline;
 }
 
+/* About box */
+.about-box {
+    position: fixed;
+    bottom: 30px;
+    right: 10px;
+    background: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    max-width: 250px;
+    font-size: 0.8rem;
+}
+
+.about-title {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.about-text {
+    color: #555;
+    line-height: 1.4;
+}
+
 /* Legend */
 .legend {
     position: fixed;
