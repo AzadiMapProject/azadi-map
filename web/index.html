@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azadi Map - Iran Protest Videos</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Leaflet MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Disclaimer -->
+    <div id="disclaimer" class="disclaimer">
+        Data: YouTube Shorts from Iran International only | Time window: 20:00 Iran time (16:30 UTC) - ongoing | Not all protests may be documented
+    </div>
+
+    <!-- Header -->
+    <div id="header" class="header">
+        <h1>Azadi Map</h1>
+        <span class="header-subtitle">Iran Protest Videos - Live Documentation</span>
+        <div class="header-stats">
+            <div class="stat-box">
+                <span class="stat-number" id="total-videos">0</span>
+                <span class="stat-label">Videos</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number" id="total-locations">0</span>
+                <span class="stat-label">Locations</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <!-- Sidebar for video list -->
+    <div id="sidebar" class="sidebar hidden">
+        <div class="sidebar-header">
+            <h2 id="sidebar-title">Videos</h2>
+            <button id="sidebar-close">&times;</button>
+        </div>
+        <div id="video-list" class="video-list"></div>
+    </div>
+
+    <!-- Legend -->
+    <div id="legend" class="legend">
+        <div class="legend-title">Zoom in for details</div>
+        <div class="legend-section">
+            <div class="legend-subtitle">Protest size:</div>
+            <div class="legend-item"><span class="legend-dot" style="background: #dc2626;"></span> Massive</div>
+            <div class="legend-item"><span class="legend-dot" style="background: #ea580c;"></span> Large</div>
+            <div class="legend-item"><span class="legend-dot" style="background: #ca8a04;"></span> Medium</div>
+            <div class="legend-item"><span class="legend-dot" style="background: #2563eb;"></span> Active</div>
+        </div>
+    </div>
+
+    <!-- Filter panel -->
+    <div id="filters" class="filters">
+        <div class="filter-group violence-toggle">
+            <label class="toggle-label">
+                <input type="checkbox" id="filter-violence">
+                <span class="toggle-text">Regime Violence Only</span>
+            </label>
+        </div>
+        <div class="stats">
+            <span id="stats-total">0 videos</span>
+            <span id="stats-located">0 on map</span>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Leaflet MarkerCluster JS -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <script src="app.js"></script>
+</body>
+</html>
