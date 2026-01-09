@@ -335,18 +335,21 @@ function addMarkers(videos) {
             marker.bindPopup(popupContent);
 
         } else {
-            // ZOOMED OUT: Simple small dots - just indicate presence
-            marker = L.circleMarker([location.lat, location.lng], {
-                radius: 6,
-                fillColor: '#dc2626',
-                color: '#fff',
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.9
+            // ZOOMED OUT: Dots with video count
+            const countIcon = L.divIcon({
+                html: '<div class="count-marker"><span>' + videos.length + '</span></div>',
+                className: 'count-icon',
+                iconSize: [28, 28],
+                iconAnchor: [14, 14],
+                popupAnchor: [0, -14]
+            });
+
+            marker = L.marker([location.lat, location.lng], {
+                icon: countIcon
             });
 
             // Simple popup
-            marker.bindPopup(`<div class="popup-location">${location.name_en}</div>`);
+            marker.bindPopup(`<div class="popup-location">${location.name_en}</div><div class="popup-count"><strong>${videos.length}</strong> videos</div>`);
         }
 
         // Click handler to show sidebar

@@ -355,6 +355,29 @@ body {
     font-weight: bold;
 }
 
+/* Count markers for zoomed out view */
+.count-icon {
+    background: transparent;
+}
+
+.count-marker {
+    width: 28px;
+    height: 28px;
+    background: #2563eb;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.count-marker span {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 /* Popup styling */
 .leaflet-popup-content-wrapper {
     border-radius: 8px;
