@@ -522,6 +522,9 @@ async function init() {
     document.getElementById('about-close').addEventListener('click', () => {
         document.getElementById('about').classList.add('hidden');
     });
+    document.getElementById('disclaimer-close').addEventListener('click', () => {
+        document.getElementById('disclaimer').classList.add('hidden');
+    });
 
     // Close sidebar when clicking on map
     map.on('click', hideSidebar);
