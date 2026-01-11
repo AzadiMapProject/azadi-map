@@ -430,12 +430,59 @@ PROTEST_KEYWORDS = [
 def is_protest_video(text):
     """
     Check if video title indicates protest-related content.
-    Returns True if any protest keyword is found.
+    Returns True if any protest keyword is found AND no interview keywords.
     """
     if not text:
         return False
 
+    # First check if it's an interview/analysis (exclude these)
+    if is_interview(text):
+        return False
+
     for keyword in PROTEST_KEYWORDS:
+        if keyword in text:
+            return True
+
+    return False
+
+
+# Keywords that indicate interviews, analysis, or studio content (NOT street footage)
+INTERVIEW_KEYWORDS = [
+    # Interview/dialogue
+    "گفتگو",         # dialogue
+    "گفت‌وگو",       # dialogue (alt)
+    "مصاحبه",        # interview
+    # Analysis/commentary
+    "تحلیل",         # analysis
+    "بررسی",         # review/examination
+    "تفسیر",         # commentary
+    "کارشناس",       # expert
+    # Statements/speeches
+    "بیانیه",        # statement
+    "پیام",          # message (often pre-recorded)
+    "سخنرانی",       # speech
+    "نشست",          # meeting/conference
+    "اظهارات",       # remarks
+    # Reactions
+    "واکنش",         # reaction
+    "پاسخ",          # response/answer
+    # News studio indicators
+    "اخبار",         # news
+    "خبر فوری",      # breaking news
+    "گزارش ویژه",   # special report
+    "زنده",          # live (usually studio)
+]
+
+
+def is_interview(text):
+    """
+    Check if video title indicates interview/analysis content.
+    These are not street protest footage.
+    """
+    if not text:
+        return False
+
+    for keyword in INTERVIEW_KEYWORDS:
         if keyword in text:
             return True
 

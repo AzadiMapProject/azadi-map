@@ -11,7 +11,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from locations import find_location, estimate_crowd_size, get_crowd_estimate, detect_event_type, is_protest_video, is_foreign_location
+from locations import find_location, estimate_crowd_size, get_crowd_estimate, detect_event_type, is_protest_video, is_foreign_location, is_interview
 
 # Channel URLs - targeting shorts for location-specific content
 CHANNELS = {
@@ -28,14 +28,18 @@ def get_channel_videos(channel_url, channel_name, max_videos=10):
     """
     Use yt-dlp to get recent videos from a channel.
     Returns list of video dicts.
+
+    NOTE: We don't use --flat-playlist because we need upload_date.
+    This is slower but necessary for day filtering.
     """
     print(f"Fetching videos from {channel_name}...")
+    print(f"  (Full metadata mode - this takes ~1 sec per video)")
 
     try:
-        # Use yt-dlp to get video info as JSON
+        # Use yt-dlp to get FULL video info (not flat) to get upload_date
         cmd = [
             "yt-dlp",
-            "--flat-playlist",
+            "--no-download",
             "--playlist-end", str(max_videos),
             "-j",
             channel_url  # URL already includes /shorts
@@ -45,7 +49,7 @@ def get_channel_videos(channel_url, channel_name, max_videos=10):
             cmd,
             capture_output=True,
             text=True,
-            timeout=120
+            timeout=600  # 10 minutes - full metadata is slow
         )
 
         if result.returncode != 0:
@@ -64,9 +68,14 @@ def get_channel_videos(channel_url, channel_name, max_videos=10):
                 if not video_id or not title:
                     continue
 
+                # Filter: exclude interviews/analysis
+                if is_interview(title):
+                    print(f"  [SKIP] {title[:40]}... (interview/analysis)")
+                    continue
+
                 # Filter: only protest-related videos
                 if not is_protest_video(title):
-                    print(f"  [SKIP] {title[:40]}... (not protest)")
+                    print(f"  [SKIP] {title[:40]}... (no protest keywords)")
                     continue
 
                 # Filter: exclude diaspora protests (outside Iran)

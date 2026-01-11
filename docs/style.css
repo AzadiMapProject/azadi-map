@@ -309,6 +309,57 @@ body {
     gap: 15px;
 }
 
+/* Day filter */
+.day-filter {
+    position: fixed;
+    top: 130px;
+    left: 10px;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: calc(100vw - 20px);
+}
+
+.day-buttons {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.day-btn {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.day-btn:hover {
+    background: #f0f0f0;
+    border-color: #bbb;
+}
+
+.day-btn.active {
+    background: #1a1a2e;
+    color: white;
+    border-color: #1a1a2e;
+}
+
+.day-btn .day-count {
+    font-size: 0.65rem;
+    opacity: 0.7;
+    margin-left: 3px;
+}
+
 /* Custom cluster icons */
 .marker-cluster {
     background-clip: padding-box;

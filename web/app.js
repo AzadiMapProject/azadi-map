@@ -8,7 +8,9 @@ let markers;
 let allVideos = [];
 let filteredVideos = [];
 let currentZoom = 5;
+let selectedDay = 'all';  // Current day filter
 const ZOOM_THRESHOLD = 7;  // Below this = simple dots, above = colored bubbles
+const PROTEST_START = '2025-12-28';  // First day of protests
 
 // Iran center coordinates
 const IRAN_CENTER = [32.4279, 53.6880];
@@ -488,6 +490,14 @@ function applyFilters() {
     const violenceOnly = document.getElementById('filter-violence').checked;
 
     filteredVideos = allVideos.filter(video => {
+        // Day filter
+        if (selectedDay !== 'all') {
+            const videoDate = getVideoDate(video);
+            if (videoDate !== selectedDay) {
+                return false;
+            }
+        }
+
         // Violence filter - show only videos with regime violence
         if (violenceOnly) {
             const eventTypes = video.event_types || [];
@@ -504,6 +514,73 @@ function applyFilters() {
 }
 
 /**
+ * Get date string (YYYY-MM-DD) from video
+ */
+function getVideoDate(video) {
+    if (!video.uploaded) return null;
+    try {
+        // Handle ISO format: 2025-12-28T00:00:00Z
+        return video.uploaded.substring(0, 10);
+    } catch {
+        return null;
+    }
+}
+
+/**
+ * Build day filter buttons based on available dates in videos
+ */
+function buildDayFilter(videos) {
+    const container = document.getElementById('day-buttons');
+    if (!container) return;
+
+    // Count videos per day
+    const dayCounts = {};
+    videos.forEach(video => {
+        const date = getVideoDate(video);
+        if (date) {
+            dayCounts[date] = (dayCounts[date] || 0) + 1;
+        }
+    });
+
+    // Sort dates
+    const dates = Object.keys(dayCounts).sort();
+
+    if (dates.length === 0) {
+        container.innerHTML = '<span style="color: #999; font-size: 0.75rem;">No dates available</span>';
+        return;
+    }
+
+    // Create buttons for each day
+    container.innerHTML = dates.map(date => {
+        const count = dayCounts[date];
+        const label = formatDayLabel(date);
+        return `<button class="day-btn" data-day="${date}">${label} <span class="day-count">(${count})</span></button>`;
+    }).join('');
+
+    // Add click handlers
+    document.querySelectorAll('.day-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedDay = btn.dataset.day;
+            applyFilters();
+        });
+    });
+}
+
+/**
+ * Format date as short label: "Dec 28", "Jan 1", etc.
+ */
+function formatDayLabel(dateStr) {
+    try {
+        const date = new Date(dateStr + 'T12:00:00Z');
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    } catch {
+        return dateStr;
+    }
+}
+
+/**
  * Initialize the application
  */
 async function init() {
@@ -512,6 +589,9 @@ async function init() {
     // Load videos
     allVideos = await loadVideos();
     filteredVideos = allVideos;
+
+    // Build day filter buttons
+    buildDayFilter(allVideos);
 
     // Add markers
     addMarkers(allVideos);
