@@ -169,37 +169,10 @@ const CITY_CENTERS = {
 };
 
 /**
- * Size config based on video count
+ * Check if video group contains violence
  */
-const SIZE_CONFIG = {
-    very_large: { label: 'Massive', color: '#dc2626' },
-    large: { label: 'Large', color: '#ea580c' },
-    medium: { label: 'Medium', color: '#ca8a04' },
-    small: { label: 'Active', color: '#2563eb' },
-};
-
-/**
- * Get size category combining video count AND crowd estimates from videos
- * More videos = bigger event, plus keyword-based estimates boost the score
- */
-function getCombinedSize(videos) {
-    // Base score from video count (each video adds points)
-    let score = videos.length * 2;
-
-    // Add points from keyword-based crowd estimates in video data
-    videos.forEach(video => {
-        const crowdSize = video.crowd_size || 'small';
-        if (crowdSize === 'very_large') score += 10;
-        else if (crowdSize === 'large') score += 5;
-        else if (crowdSize === 'medium') score += 2;
-        else score += 1;
-    });
-
-    // Convert score to category
-    if (score >= 50) return 'very_large';
-    if (score >= 25) return 'large';
-    if (score >= 12) return 'medium';
-    return 'small';
+function hasViolence(videos) {
+    return videos.some(v => (v.event_types || []).includes('repression'));
 }
 
 /**
@@ -254,6 +227,7 @@ function groupByCity(videos) {
 
 /**
  * Add markers to the map
+ * Simple markers: blue = footage, red = violence
  */
 function addMarkers(videos) {
     markers.clearLayers();
@@ -261,87 +235,37 @@ function addMarkers(videos) {
     const isZoomedIn = map.getZoom() >= ZOOM_THRESHOLD;
     const violenceOnly = document.getElementById('filter-violence').checked;
 
-    // Violence mode: always by location. Normal mode: city when zoomed out, location when zoomed in
-    const viewMode = violenceOnly ? 'location' : (isZoomedIn ? 'location' : 'city');
+    // Group by city (zoomed out) or location (zoomed in)
+    const viewMode = isZoomedIn ? 'location' : 'city';
     const groups = viewMode === 'city' ? groupByCity(videos) : groupByLocation(videos);
 
     Object.values(groups).forEach(group => {
         const { location, videos } = group;
 
-        let marker;
+        // Determine color: red if violence, blue otherwise
+        const isViolent = hasViolence(videos);
+        const markerColor = isViolent ? '#dc2626' : '#2563eb';
 
-        if (violenceOnly) {
-            // VIOLENCE MODE: Red markers with count
-            const violenceIcon = L.divIcon({
-                html: '<div class="violence-marker"><span>' + videos.length + '</span></div>',
-                className: 'violence-icon',
-                iconSize: [28, 28],
-                iconAnchor: [14, 14],
-                popupAnchor: [0, -14]
-            });
+        // Radius based on video count (subtle scaling)
+        const baseRadius = viewMode === 'city' ? 16 : 12;
+        const radius = Math.min(baseRadius + Math.log2(videos.length + 1) * 4, 30);
 
-            marker = L.marker([location.lat, location.lng], {
-                icon: violenceIcon
-            });
-            marker.videoCount = videos.length;
+        const marker = L.circleMarker([location.lat, location.lng], {
+            radius: radius,
+            fillColor: markerColor,
+            color: '#fff',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.85
+        });
+        marker.videoCount = videos.length;
 
-            // Popup for violence
-            const popupContent = `
-                <div class="popup-location">${location.name_en}</div>
-                <div class="popup-count"><strong>${videos.length}</strong> video${videos.length > 1 ? 's' : ''}</div>
-            `;
-            marker.bindPopup(popupContent);
-
-        } else if (isZoomedIn) {
-            // ZOOMED IN: Colored bubbles based on combined score (videos + crowd keywords)
-            const sizeCategory = getCombinedSize(videos);
-            const sizeConfig = SIZE_CONFIG[sizeCategory];
-
-            // Radius based on size category
-            const radiusMap = {
-                'very_large': viewMode === 'city' ? 45 : 30,
-                'large': viewMode === 'city' ? 35 : 24,
-                'medium': viewMode === 'city' ? 26 : 18,
-                'small': viewMode === 'city' ? 18 : 12
-            };
-            const radius = radiusMap[sizeCategory];
-
-            marker = L.circleMarker([location.lat, location.lng], {
-                radius: radius,
-                fillColor: sizeConfig.color,
-                color: '#fff',
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.85
-            });
-            marker.videoCount = videos.length;
-
-            // Popup with details
-            const popupContent = `
-                <div class="popup-location">${location.name_en}</div>
-                <div class="popup-count"><strong>${videos.length}</strong> video${videos.length > 1 ? 's' : ''}</div>
-                <div class="popup-crowd" style="color: ${sizeConfig.color}; font-weight: bold;">${sizeConfig.label}</div>
-            `;
-            marker.bindPopup(popupContent);
-
-        } else {
-            // ZOOMED OUT: Dots with video count
-            const countIcon = L.divIcon({
-                html: '<div class="count-marker"><span>' + videos.length + '</span></div>',
-                className: 'count-icon',
-                iconSize: [28, 28],
-                iconAnchor: [14, 14],
-                popupAnchor: [0, -14]
-            });
-
-            marker = L.marker([location.lat, location.lng], {
-                icon: countIcon
-            });
-            marker.videoCount = videos.length;
-
-            // Simple popup
-            marker.bindPopup(`<div class="popup-location">${location.name_en}</div><div class="popup-count"><strong>${videos.length}</strong> videos</div>`);
-        }
+        // Simple popup
+        const popupContent = `
+            <div class="popup-location">${location.name_en}</div>
+            <div class="popup-count"><strong>${videos.length}</strong> video${videos.length > 1 ? 's' : ''}</div>
+        `;
+        marker.bindPopup(popupContent);
 
         // Click handler to show sidebar
         marker.on('click', () => {
@@ -599,17 +523,46 @@ async function init() {
     // Set up event listeners
     document.getElementById('sidebar-close').addEventListener('click', hideSidebar);
     document.getElementById('filter-violence').addEventListener('change', applyFilters);
-    document.getElementById('about-close').addEventListener('click', () => {
-        document.getElementById('about').classList.add('hidden');
-    });
-    document.getElementById('disclaimer-close').addEventListener('click', () => {
-        document.getElementById('disclaimer').classList.add('hidden');
-    });
+
+    // FlightRadar toggle
+    const frToggle = document.getElementById('flightradar-toggle');
+    const frPanel = document.getElementById('flightradar-panel');
+    const frIframe = document.getElementById('flightradar-iframe');
+
+    if (frToggle && frPanel) {
+        frToggle.addEventListener('click', () => {
+            frPanel.classList.toggle('collapsed');
+            // Lazy load iframe on first open
+            if (!frPanel.classList.contains('collapsed') && frIframe && frIframe.src === 'about:blank') {
+                frIframe.src = frIframe.dataset.src;
+            }
+        });
+    }
+
+    // Check internet status
+    checkInternetStatus();
 
     // Close sidebar when clicking on map
     map.on('click', hideSidebar);
 
     console.log(`Loaded ${allVideos.length} videos`);
+}
+
+/**
+ * Check Iran internet status (simplified check)
+ */
+async function checkInternetStatus() {
+    const statusIcon = document.getElementById('status-icon');
+    const statusText = document.getElementById('status-text');
+
+    if (!statusIcon || !statusText) return;
+
+    // We can't directly check Iran's internet from here
+    // Show as "Restricted" since we know there are ongoing disruptions
+    // Users can click NetBlocks link for real-time data
+    statusIcon.className = 'status-icon restricted';
+    statusText.className = 'status-text restricted';
+    statusText.textContent = 'Disrupted';
 }
 
 // Start the app

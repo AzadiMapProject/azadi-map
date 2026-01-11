@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azadi Map - Iran Protest Videos</title>
+    <title>Azadi Map - Iran Revolution Dashboard</title>
+    <meta name="description" content="Live map of Iran protests with video documentation, flight tracking, and internet status.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://azadimapproject.github.io/azadi-map/">
+    <meta property="og:title" content="Azadi Map - Iran Revolution Dashboard">
+    <meta property="og:description" content="Live map of Iran protests. Video locations, flight tracking, internet status.">
+    <meta property="og:image" content="https://azadimapproject.github.io/azadi-map/preview.png">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://azadimapproject.github.io/azadi-map/">
+    <meta name="twitter:title" content="Azadi Map - Iran Revolution Dashboard">
+    <meta name="twitter:description" content="Live map of Iran protests. Video locations, flight tracking, internet status.">
+    <meta name="twitter:image" content="https://azadimapproject.github.io/azadi-map/preview.png">
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -15,19 +30,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Disclaimer -->
-    <div id="disclaimer" class="disclaimer">
-        <span class="disclaimer-text">
-            <span class="disclaimer-full">Data: Iran International YouTube Shorts | From 20:00 Tehran time | Not all protests documented</span>
-            <span class="disclaimer-short">Iran International | 20:00 Tehran | Incomplete data</span>
-        </span>
-        <button id="disclaimer-close" class="disclaimer-close">&times;</button>
+    <!-- Internet Status Bar -->
+    <div id="internet-status" class="internet-status-bar">
+        <div class="status-content">
+            <span class="status-icon" id="status-icon">&#9679;</span>
+            <span class="status-label">Iran Internet:</span>
+            <span class="status-text" id="status-text">Checking...</span>
+        </div>
+        <a href="https://netblocks.org/iran" target="_blank" class="status-link">NetBlocks</a>
     </div>
 
     <!-- Header -->
     <div id="header" class="header">
         <h1>Azadi Map</h1>
-        <span class="header-subtitle">Iran Protest Videos - Live Documentation</span>
+        <span class="header-subtitle">Iran Revolution Dashboard</span>
         <div class="header-stats">
             <div class="stat-box">
                 <span class="stat-number" id="total-videos">0</span>
@@ -51,25 +67,12 @@
         <div id="video-list" class="video-list"></div>
     </div>
 
-    <!-- About/Source info -->
-    <div id="about" class="about-box">
-        <button id="about-close" class="about-close">&times;</button>
-        <div class="about-title">About data source</div>
-        <div class="about-text">
-            Videos sourced from <strong>Iran International</strong> YouTube channel. We use II because their content is verified and deduplicated - they filter submissions before publishing, reducing false/duplicate reports.
-        </div>
-    </div>
-
     <!-- Legend -->
     <div id="legend" class="legend">
-        <div class="legend-title">Zoom in for details</div>
-        <div class="legend-section">
-            <div class="legend-subtitle">Protest size:</div>
-            <div class="legend-item"><span class="legend-dot" style="background: #dc2626;"></span> Massive</div>
-            <div class="legend-item"><span class="legend-dot" style="background: #ea580c;"></span> Large</div>
-            <div class="legend-item"><span class="legend-dot" style="background: #ca8a04;"></span> Medium</div>
-            <div class="legend-item"><span class="legend-dot" style="background: #2563eb;"></span> Active</div>
-        </div>
+        <div class="legend-title">Video Locations</div>
+        <div class="legend-item"><span class="legend-dot" style="background: #2563eb;"></span> Protest footage</div>
+        <div class="legend-item"><span class="legend-dot" style="background: #dc2626;"></span> Regime violence</div>
+        <div class="legend-hint">Click marker for videos</div>
     </div>
 
     <!-- Filter panel -->
@@ -90,6 +93,27 @@
     <div id="day-filter" class="day-filter">
         <button class="day-btn active" data-day="all">All</button>
         <div id="day-buttons" class="day-buttons"></div>
+    </div>
+
+    <!-- FlightRadar Panel -->
+    <div id="flightradar-panel" class="flightradar-panel collapsed">
+        <button id="flightradar-toggle" class="flightradar-toggle">
+            <span class="toggle-icon">&#9992;</span>
+            <span class="toggle-text">Flights</span>
+        </button>
+        <div class="flightradar-content">
+            <div class="flightradar-header">
+                <span>Live Air Traffic - Iran</span>
+                <a href="https://www.flightradar24.com/32.43,53.69/5" target="_blank" class="fr24-link">Open FlightRadar24</a>
+            </div>
+            <iframe
+                id="flightradar-iframe"
+                src="about:blank"
+                data-src="https://www.flightradar24.com/simple_index.php?lat=32.43&lon=53.69&z=5&airports=1"
+                allowfullscreen
+                loading="lazy">
+            </iframe>
+        </div>
     </div>
 
     <!-- Leaflet JS -->
