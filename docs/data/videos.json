@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-12T11:45:30Z",
+  "last_updated": "2026-01-12T11:53:41Z",
   "videos": [
     {
       "id": "J6UG_BCAZKQ",
@@ -46,26 +46,6 @@
       ],
       "thumbnail": "https://img.youtube.com/vi/FCRzqVWio_8/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=FCRzqVWio_8",
-      "uploaded": "2026-01-12T00:00:00Z",
-      "source": "Iran International"
-    },
-    {
-      "id": "nRp7v-Wz2bo",
-      "title": "اعلام همبستگی ایرانیان ساکن اروپا با معترضان در ایران",
-      "title_english": "",
-      "location": {
-        "name_fa": "ایران",
-        "name_en": "Iran",
-        "city": "Iran",
-        "lat": 32.4279,
-        "lng": 53.688
-      },
-      "crowd_size": "large",
-      "event_types": [
-        "protest"
-      ],
-      "thumbnail": "https://img.youtube.com/vi/nRp7v-Wz2bo/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=nRp7v-Wz2bo",
       "uploaded": "2026-01-12T00:00:00Z",
       "source": "Iran International"
     },

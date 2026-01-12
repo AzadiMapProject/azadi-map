@@ -452,16 +452,18 @@ function getVideoDate(video) {
 
 /**
  * Build day filter buttons based on available dates in videos
+ * Only counts videos that have a location (will appear on map)
  */
 function buildDayFilter(videos) {
     const container = document.getElementById('day-buttons');
     if (!container) return;
 
-    // Count videos per day
+    // Count videos per day - ONLY those with location
     const dayCounts = {};
     videos.forEach(video => {
         const date = getVideoDate(video);
-        if (date) {
+        const hasLocation = video.location && video.location.lat;
+        if (date && hasLocation) {
             dayCounts[date] = (dayCounts[date] || 0) + 1;
         }
     });

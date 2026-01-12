@@ -95,7 +95,7 @@
         <div id="day-buttons" class="day-buttons"></div>
     </div>
 
-    <!-- FlightRadar Panel -->
+    <!-- Flight Tracking Panel -->
     <div id="flightradar-panel" class="flightradar-panel collapsed">
         <button id="flightradar-toggle" class="flightradar-toggle">
             <span class="toggle-icon">&#9992;</span>
@@ -104,12 +104,12 @@
         <div class="flightradar-content">
             <div class="flightradar-header">
                 <span>Live Air Traffic - Iran</span>
-                <a href="https://www.flightradar24.com/32.43,53.69/5" target="_blank" class="fr24-link">Open FlightRadar24</a>
+                <a href="https://globe.adsbexchange.com/?lat=32.43&lon=53.69&zoom=5" target="_blank" class="fr24-link">Full screen</a>
             </div>
             <iframe
                 id="flightradar-iframe"
                 src="about:blank"
-                data-src="https://www.flightradar24.com/simple_index.php?lat=32.43&lon=53.69&z=5&airports=1"
+                data-src="https://globe.adsbexchange.com/?lat=32.43&lon=53.69&zoom=5&hideSidebar&hideButtons"
                 allowfullscreen
                 loading="lazy">
             </iframe>

@@ -368,6 +368,7 @@ FOREIGN_LOCATIONS = [
     "ترکیه",         # Turkey
     "عراق",          # Iraq
     "امارات",        # UAE
+    "اروپا",         # Europe
     # Cities
     "لندن",          # London
     "پاریس",         # Paris
