@@ -30,22 +30,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Internet Status Indicator -->
-    <div id="wifi-indicator" class="wifi-indicator disrupted">
-        <a href="https://netblocks.org/iran" target="_blank" class="wifi-link" title="NetBlocks Iran - Click for live data">
-            <div class="wifi-icon">
-                <div class="wifi-bar bar1"></div>
-                <div class="wifi-bar bar2"></div>
-                <div class="wifi-bar bar3"></div>
-                <div class="wifi-dot"></div>
-            </div>
-            <div class="wifi-status">
-                <span class="wifi-label">Iran Internet</span>
-                <span class="wifi-text">DISRUPTED</span>
-            </div>
-        </a>
-    </div>
-
     <!-- Header -->
     <div id="header" class="header">
         <h1>Azadi Map</h1>
@@ -101,24 +85,34 @@
         <div id="day-buttons" class="day-buttons"></div>
     </div>
 
-    <!-- Flight Tracking Panel -->
-    <div id="flightradar-panel" class="flightradar-panel collapsed">
-        <button id="flightradar-toggle" class="flightradar-toggle">
-            <span class="toggle-icon">&#9992;</span>
-            <span class="toggle-text">Flights</span>
-        </button>
-        <div class="flightradar-content">
-            <div class="flightradar-header">
-                <span>Live Air Traffic - Iran</span>
-                <a href="https://globe.adsbexchange.com/?lat=32.43&lon=53.69&zoom=5" target="_blank" class="fr24-link">Full screen</a>
+    <!-- Dashboard Buttons (bottom right) -->
+    <div class="dashboard-buttons">
+        <!-- Internet Status -->
+        <a href="https://netblocks.org/iran" target="_blank" class="dashboard-btn internet-btn" title="NetBlocks Iran">
+            <span class="btn-icon">&#128246;</span>
+            <span class="btn-text">Internet</span>
+            <span class="status-dot disrupted"></span>
+        </a>
+
+        <!-- Flight Tracking -->
+        <div id="flightradar-panel" class="flightradar-panel collapsed">
+            <button id="flightradar-toggle" class="dashboard-btn">
+                <span class="btn-icon">&#9992;</span>
+                <span class="btn-text">Flights</span>
+            </button>
+            <div class="flightradar-content">
+                <div class="flightradar-header">
+                    <span>Live Air Traffic - Iran</span>
+                    <a href="https://globe.adsbexchange.com/?lat=32.43&lon=53.69&zoom=5" target="_blank" class="fr24-link">Full screen</a>
+                </div>
+                <iframe
+                    id="flightradar-iframe"
+                    src="about:blank"
+                    data-src="https://globe.adsbexchange.com/?lat=32.43&lon=53.69&zoom=5&hideSidebar&hideButtons"
+                    allowfullscreen
+                    loading="lazy">
+                </iframe>
             </div>
-            <iframe
-                id="flightradar-iframe"
-                src="about:blank"
-                data-src="https://globe.adsbexchange.com/?lat=32.43&lon=53.69&zoom=5&hideSidebar&hideButtons"
-                allowfullscreen
-                loading="lazy">
-            </iframe>
         </div>
     </div>
 
