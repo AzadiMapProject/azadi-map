@@ -541,30 +541,10 @@ async function init() {
         });
     }
 
-    // Check internet status
-    checkInternetStatus();
-
     // Close sidebar when clicking on map
     map.on('click', hideSidebar);
 
     console.log(`Loaded ${allVideos.length} videos`);
-}
-
-/**
- * Check Iran internet status (simplified check)
- */
-async function checkInternetStatus() {
-    const statusIcon = document.getElementById('status-icon');
-    const statusText = document.getElementById('status-text');
-
-    if (!statusIcon || !statusText) return;
-
-    // We can't directly check Iran's internet from here
-    // Show as "Restricted" since we know there are ongoing disruptions
-    // Users can click NetBlocks link for real-time data
-    statusIcon.className = 'status-icon restricted';
-    statusText.className = 'status-text restricted';
-    statusText.textContent = 'Disrupted';
 }
 
 // Start the app
